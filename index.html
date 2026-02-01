@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Educare Home | Premium Deeni Maktab</title>
+    
+    <!-- Fonts: Elegant & Modern -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-green: #064E3B; /* Deep Luxury Green */
+            --secondary-gold: #D4AF37; /* Metallic Gold */
+            --light-gold: #F3E5AB;
+            --text-dark: #1F2937;
+            --text-gray: #4B5563;
+            --bg-light: #F9FAFB;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-green); }
+        
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .section-padding { padding: 80px 0; }
+        
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        .section-header p { color: var(--text-gray); font-size: 1.1rem; }
+        .divider { height: 3px; width: 80px; background: var(--secondary-gold); margin: 15px auto; }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 2px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        .btn-gold { background: var(--secondary-gold); color: var(--white); border: 2px solid var(--secondary-gold); }
+        .btn-gold:hover { background: transparent; color: var(--secondary-gold); }
+        
+        .btn-outline { background: transparent; color: var(--white); border: 2px solid var(--white); }
+        .btn-outline:hover { background: var(--white); color: var(--primary-green); }
+
+        /* --- HEADER --- */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-green); display: flex; align-items: center; gap: 10px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--text-dark); font-weight: 500; font-size: 15px; }
+        .nav-links a:hover { color: var(--secondary-gold); }
+        .mobile-toggle { display: none; font-size: 24px; cursor: pointer; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(6, 78, 59, 0.8), rgba(6, 78, 59, 0.6)), url('https://images.unsplash.com/photo-1584286595398-a59f21d313f5?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: -1px;
+        }
+        .hero-content h1 { font-size: 3.5rem; color: var(--white); margin-bottom: 20px; line-height: 1.2; }
+        .hero-content p { font-size: 1.3rem; margin-bottom: 40px; font-weight: 300; opacity: 0.9; }
+        .hero-btn-group { display: flex; gap: 20px; justify-content: center; }
+
+        /* --- FEATURES --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+        .feature-card {
+            background: var(--white);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--secondary-gold);
+            border-radius: 4px;
+            transition: transform 0.3s;
+        }
+        .feature-card:hover { transform: translateY(-10px); }
+        .feature-icon { font-size: 40px; color: var(--primary-green); margin-bottom: 20px; }
+
+        /* --- CURRICULUM --- */
+        .curriculum { background-color: var(--bg-light); }
+        .curriculum-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+        .curriculum-item {
+            background: var(--white);
+            padding: 20px;
+            border-left: 4px solid var(--primary-green);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+        .curriculum-item i { color: var(--secondary-gold); }
+
+        /* --- SHIFTS --- */
+        .shifts-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px; }
+        .shift-card {
+            background: var(--white);
+            border: 1px solid #eee;
+            padding: 30px;
+            width: 250px;
+            text-align: center;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .shift-card:hover { border-color: var(--secondary-gold); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .shift-card i { font-size: 30px; color: var(--secondary-gold); margin-bottom: 15px; }
+        .shift-card h3 { font-size: 1.2rem; margin-bottom: 5px; }
+
+        /* --- ABOUT / VIDEO --- */
+        .about-section { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .about-text h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .video-wrapper {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .video-wrapper img { width: 100%; display: block; }
+        .play-btn {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px; height: 70px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary-green);
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 0 0 10px rgba(255,255,255,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        /* --- LEADERSHIP --- */
+        .leadership { background-color: var(--primary-green); color: var(--white); }
+        .leadership h2, .leadership p { color: var(--white); }
+        .leadership .divider { background: var(--secondary-gold); }
+        .leader-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center; }
+        .leader-card img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--secondary-gold); margin-bottom: 15px; object-fit: cover; }
+        .leader-card h4 { color: var(--secondary-gold); font-family: 'Poppins', sans-serif; }
+
+        /* --- CONTACT & FOOTER --- */
+        footer { background: #022c22; color: #d1d5db; padding: 60px 0 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h3 { color: var(--white); margin-bottom: 20px; font-size: 1.4rem; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: #d1d5db; }
+        .footer-links a:hover { color: var(--secondary-gold); padding-left: 5px; }
+        .contact-info li { display: flex; gap: 10px; margin-bottom: 15px; }
+        .contact-info i { color: var(--secondary-gold); margin-top: 5px; }
+        .copyright { text-align: center; border-top: 1px solid #1f4b3f; padding-top: 20px; font-size: 0.9rem; }
+
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px;
+            background: #25d366; color: white;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 100;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-btn-group { flex-direction: column; }
+            .about-section { grid-template-columns: 1fr; }
+            .nav-links { display: none; position: absolute; top: 80px; left: 0; width: 100%; background: var(--white); flex-direction: column; padding: 20px; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+            .mobile-toggle { display: block; }
+        }
+
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); } }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-mosque"></i> ISLAMIC EDUCARE
+                </div>
+                <div class="mobile-toggle" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#curriculum">Programs</a></li>
+                    <li><a href="#leadership">Leadership</a></li>
+                    <li><a href="#contact" class="btn btn-gold" style="margin-left: 10px; padding: 8px 20px;">Admission</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Where Modern Education <br> Meets Quranic Values</h1>
+            <p>Admissions Open: Play to Hifz. Nurturing Fitrah with Love.</p>
+            <div class="hero-btn-group">
+                <a href="#contact" class="btn btn-gold">Book Campus Visit</a>
+                <a href="https://www.youtube.com" target="_blank" class="btn btn-outline"><i class="fas fa-play"></i> Watch Documentary</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="container">
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-globe-americas feature-icon"></i>
+                <h3>International Standard Hifz</h3>
+                <p>Global standard curriculum focusing on Tajweed and memorization excellence.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-chalkboard-teacher feature-icon"></i>
+                <h3>1:10 Teacher Ratio</h3>
+                <p>Individual care and attention for every child's spiritual and academic growth.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shield-alt feature-icon"></i>
+                <h3>Safe & AC Campus</h3>
+                <p>Fully air-conditioned classrooms with 24/7 CCTV monitoring for safety.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section-padding" id="about">
+        <div class="container about-section">
+            <div class="about-text">
+                <h2>Nurturing the Future of Ummah</h2>
+                <div class="divider" style="margin: 0 0 20px 0;"></div>
+                <p>At <strong>Islamic Educare Home</strong>, we believe that a pious child is the key to Jannah. Our unique approach combines modern academic needs with deep-rooted Islamic values.</p>
+                <br>
+                <ul style="list-style: none;">
+                    <li><i class="fas fa-check" style="color: var(--secondary-gold); margin-right: 10px;"></i> Punishment-free environment</li>
+                    <li><i class="fas fa-check" style="color: var(--secondary-gold); margin-right: 10px;"></i> Separate classrooms for boys & girls</li>
+                    <li><i class="fas fa-check" style="color: var(--secondary-gold); margin-right: 10px;"></i> Located in the heart of Gulshan</li>
+                </ul>
+                <br>
+                <a href="#contact" class="btn" style="border-bottom: 2px solid var(--primary-green); color: var(--primary-green);">Learn More &rarr;</a>
+            </div>
+            <div class="video-wrapper">
+                <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=2070&auto=format&fit=crop" alt="Classroom">
+                <div class="play-btn"><i class="fas fa-play"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curriculum Section -->
+    <section class="section-padding curriculum" id="curriculum">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Curriculum</h2>
+                <div class="divider"></div>
+                <p>A balanced syllabus designed for school-going children.</p>
+            </div>
+            <div class="curriculum-grid">
+                <div class="curriculum-item"><i class="fas fa-quran"></i> Nazira & Hifz (Madani Method)</div>
+                <div class="curriculum-item"><i class="fas fa-book-open"></i> Correct Recitation with Meaning</div>
+                <div class="curriculum-item"><i class="fas fa-pray"></i> Practical Salah Training</div>
+                <div class="curriculum-item"><i class="fas fa-hand-holding-heart"></i> Daily Masail & Etiquette</div>
+                <div class="curriculum-item"><i class="fas fa-history"></i> Seerah of Prophet (PBUH)</div>
+                <div class="curriculum-item"><i class="fas fa-language"></i> Arabic Language Support</div>
+            </div>
+
+            <!-- Shifts -->
+            <div class="shifts-container">
+                <div class="shift-card">
+                    <i class="fas fa-sun"></i>
+                    <h3>Morning Shift</h3>
+                    <p>Best for evening schoolers</p>
+                </div>
+                <div class="shift-card" style="border-color: var(--secondary-gold); background: #fffdf5;">
+                    <i class="fas fa-baby-carriage"></i>
+                    <h3>Daycare Shift</h3>
+                    <p>Pre-play & Nursery Care</p>
+                </div>
+                <div class="shift-card">
+                    <i class="fas fa-moon"></i>
+                    <h3>Evening Shift</h3>
+                    <p>After-school program</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="section-padding leadership" id="leadership">
+        <div class="container">
+            <div class="section-header">
+                <h2>Guidance & Leadership</h2>
+                <div class="divider"></div>
+                <p>Supervised by renowned scholars of the country.</p>
+            </div>
+            <div class="leader-grid">
+                <div class="leader-card">
+                    <img src="https://via.placeholder.com/150" alt="Shaykh Abdul Haque">
+                    <h4>Shaykh Abdul Haque</h4>
+                    <p>Advisor / Chairman</p>
+                </div>
+                <div class="leader-card">
+                    <img src="https://via.placeholder.com/150" alt="Syed Zulfiqar Zahur">
+                    <h4>Syed Zulfiqar Zahur</h4>
+                    <p>Supervisor (Khatib, Baridhara)</p>
+                </div>
+                <div class="leader-card">
+                    <img src="https://via.placeholder.com/150" alt="Director">
+                    <h4>H.M. Abu Taher Saifullah</h4>
+                    <p>Director</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Islamic Educare Home</h3>
+                    <p>A premier Deeni Maktab providing after-school programs for children and teenagers in Gulshan.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#curriculum">Admissions</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> House #5, Road #127, Block-E, Gulshan-1, Dhaka</li>
+                        <li><i class="fas fa-phone"></i> 01753 750 903</li>
+                        <li><i class="fas fa-envelope"></i> info@islamiceducare.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Islamic Educare Home. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/8801815036007" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Simple Script for Mobile Menu -->
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

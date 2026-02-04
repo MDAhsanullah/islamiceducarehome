@@ -3,411 +3,484 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islamic Educare Home | Premium Deeni Maktab</title>
+    <title>Islamic Educare Home | Premium Deeni Institute</title>
     
-    <!-- Fonts: Elegant & Modern -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Hind+Siliguri:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Icons -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CSS VARIABLES & RESET --- */
+        /* --- 1. CSS VARIABLES (THEME CONFIG) --- */
         :root {
-            --primary-green: #064E3B; /* Deep Luxury Green */
-            --secondary-gold: #D4AF37; /* Metallic Gold */
-            --light-gold: #F3E5AB;
-            --text-dark: #1F2937;
-            --text-gray: #4B5563;
-            --bg-light: #F9FAFB;
-            --white: #ffffff;
+            --bg-dark: #050E0E;      /* Deepest Black-Green */
+            --bg-card: #0A1F1F;      /* Lighter Card BG */
+            --primary: #0F3D3E;      /* Primary Green */
+            --gold: #C5A059;         /* Royal Gold */
+            --gold-light: #E5C585;   /* Light Gold */
+            --text-white: #FFFFFF;
+            --text-gray: #A0A0A0;
+            
+            --font-head: 'Cinzel', serif;
+            --font-body: 'Outfit', sans-serif;
+            --font-bn: 'Hind Siliguri', sans-serif;
+            
+            --transition: all 0.3s ease-in-out;
         }
 
+        /* --- 2. GLOBAL RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-
+        
         body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-dark);
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            font-family: var(--font-body);
+            overflow-x: hidden;
             line-height: 1.6;
-            background-color: var(--white);
         }
 
-        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-green); }
-        
-        a { text-decoration: none; transition: 0.3s; }
-        ul { list-style: none; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        
+        /* Typography Classes */
+        h1, h2, h3, h4 { font-family: var(--font-head); text-transform: uppercase; font-weight: 700; }
+        .bn { font-family: var(--font-bn); }
+        .text-gold { color: var(--gold); }
         .section-padding { padding: 80px 0; }
-        
-        .section-header { text-align: center; margin-bottom: 50px; }
-        .section-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
-        .section-header p { color: var(--text-gray); font-size: 1.1rem; }
-        .divider { height: 3px; width: 80px; background: var(--secondary-gold); margin: 15px auto; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* --- BUTTONS --- */
+        /* Buttons */
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            font-weight: 600;
-            border-radius: 2px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-size: 14px;
+            display: inline-block; padding: 12px 30px;
+            font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            border: 1px solid var(--gold); color: var(--gold);
+            text-decoration: none; transition: var(--transition);
+            cursor: pointer; background: transparent;
         }
-        .btn-gold { background: var(--secondary-gold); color: var(--white); border: 2px solid var(--secondary-gold); }
-        .btn-gold:hover { background: transparent; color: var(--secondary-gold); }
+        .btn:hover { background: var(--gold); color: var(--bg-dark); box-shadow: 0 0 15px rgba(197, 160, 89, 0.4); }
+        .btn-fill { background: var(--gold); color: var(--bg-dark); }
+        .btn-fill:hover { background: var(--gold-light); transform: translateY(-3px); }
+
+        /* --- 3. NAVBAR --- */
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 20px 0; z-index: 1000;
+            background: rgba(5, 14, 14, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+            transition: var(--transition);
+        }
+        .navbar.scrolled { padding: 15px 0; box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
         
-        .btn-outline { background: transparent; color: var(--white); border: 2px solid var(--white); }
-        .btn-outline:hover { background: var(--white); color: var(--primary-green); }
+        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-family: var(--font-head); color: var(--white); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo i { color: var(--gold); }
 
-        /* --- HEADER --- */
-        header {
-            background: var(--white);
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-        }
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-green); display: flex; align-items: center; gap: 10px; }
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: var(--text-dark); font-weight: 500; font-size: 15px; }
-        .nav-links a:hover { color: var(--secondary-gold); }
-        .mobile-toggle { display: none; font-size: 24px; cursor: pointer; }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition); }
+        .nav-links a:hover { color: var(--gold); }
+        
+        .mobile-menu-btn { display: none; font-size: 24px; color: var(--gold); cursor: pointer; }
 
-        /* --- HERO SECTION --- */
+        /* --- 4. HERO SECTION --- */
         .hero {
-            height: 90vh;
-            background: linear-gradient(rgba(6, 78, 59, 0.8), rgba(6, 78, 59, 0.6)), url('https://images.unsplash.com/photo-1584286595398-a59f21d313f5?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            margin-top: -1px;
+            height: 100vh;
+            background: linear-gradient(rgba(5, 14, 14, 0.7), rgba(5, 14, 14, 0.8)), url("islamic-green-banner-background-template-vector.jpg");
+            background-size: cover; background-position: center; background-attachment: fixed;
+            display: flex; align-items: center; justify-content: center; text-align: center;
         }
-        .hero-content h1 { font-size: 3.5rem; color: var(--white); margin-bottom: 20px; line-height: 1.2; }
-        .hero-content p { font-size: 1.3rem; margin-bottom: 40px; font-weight: 300; opacity: 0.9; }
-        .hero-btn-group { display: flex; gap: 20px; justify-content: center; }
+        .hero-content h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; color: var(--white); }
+        .hero-content p { font-size: 1.2rem; color: #ddd; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .hero-badges { display: flex; gap: 15px; justify-content: center; margin-bottom: 30px; flex-wrap: wrap; }
+        .badge { background: rgba(197, 160, 89, 0.2); border: 1px solid var(--gold); color: var(--gold); padding: 5px 15px; font-size: 12px; border-radius: 50px; text-transform: uppercase; }
 
-        /* --- FEATURES --- */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: -50px;
-            position: relative;
-            z-index: 10;
-        }
-        .feature-card {
-            background: var(--white);
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border-top: 4px solid var(--secondary-gold);
-            border-radius: 4px;
-            transition: transform 0.3s;
-        }
-        .feature-card:hover { transform: translateY(-10px); }
-        .feature-icon { font-size: 40px; color: var(--primary-green); margin-bottom: 20px; }
+        /* --- 5. ABOUT SECTION --- */
+        .section-title-wrapper { text-align: center; margin-bottom: 60px; }
+        .sub-heading { color: var(--gold); letter-spacing: 3px; font-size: 14px; font-weight: 600; display: block; margin-bottom: 10px; }
+        .section-title { font-size: 2.5rem; color: var(--white); }
+        .divider { width: 80px; height: 3px; background: var(--gold); margin: 20px auto; }
 
-        /* --- CURRICULUM --- */
-        .curriculum { background-color: var(--bg-light); }
-        .curriculum-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
-        .curriculum-item {
-            background: var(--white);
-            padding: 20px;
-            border-left: 4px solid var(--primary-green);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-        }
-        .curriculum-item i { color: var(--secondary-gold); }
-
-        /* --- SHIFTS --- */
-        .shifts-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px; }
-        .shift-card {
-            background: var(--white);
-            border: 1px solid #eee;
-            padding: 30px;
-            width: 250px;
-            text-align: center;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
-        .shift-card:hover { border-color: var(--secondary-gold); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .shift-card i { font-size: 30px; color: var(--secondary-gold); margin-bottom: 15px; }
-        .shift-card h3 { font-size: 1.2rem; margin-bottom: 5px; }
-
-        /* --- ABOUT / VIDEO --- */
-        .about-section { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        .about-text h2 { font-size: 2.5rem; margin-bottom: 20px; }
-        .video-wrapper {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        .video-wrapper img { width: 100%; display: block; }
-        .play-btn {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 70px; height: 70px;
-            background: var(--white);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--primary-green);
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 0 0 10px rgba(255,255,255,0.3);
-            animation: pulse 2s infinite;
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .about-img { position: relative; }
+        .about-img img { width: 100%; border-radius: 4px; border: 1px solid rgba(197, 160, 89, 0.3); }
+        .quote-box {
+            border-left: 3px solid var(--gold);
+            padding-left: 20px; margin: 20px 0;
+            font-style: italic; color: var(--text-gray);
         }
 
-        /* --- LEADERSHIP --- */
-        .leadership { background-color: var(--primary-green); color: var(--white); }
-        .leadership h2, .leadership p { color: var(--white); }
-        .leadership .divider { background: var(--secondary-gold); }
-        .leader-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center; }
-        .leader-card img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--secondary-gold); margin-bottom: 15px; object-fit: cover; }
-        .leader-card h4 { color: var(--secondary-gold); font-family: 'Poppins', sans-serif; }
-
-        /* --- CONTACT & FOOTER --- */
-        footer { background: #022c22; color: #d1d5db; padding: 60px 0 20px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-col h3 { color: var(--white); margin-bottom: 20px; font-size: 1.4rem; }
-        .footer-links li { margin-bottom: 10px; }
-        .footer-links a { color: #d1d5db; }
-        .footer-links a:hover { color: var(--secondary-gold); padding-left: 5px; }
-        .contact-info li { display: flex; gap: 10px; margin-bottom: 15px; }
-        .contact-info i { color: var(--secondary-gold); margin-top: 5px; }
-        .copyright { text-align: center; border-top: 1px solid #1f4b3f; padding-top: 20px; font-size: 0.9rem; }
-
-        /* Floating WhatsApp */
-        .whatsapp-float {
-            position: fixed; bottom: 30px; right: 30px;
-            background: #25d366; color: white;
-            width: 60px; height: 60px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            z-index: 100;
+        /* --- 6. DEPARTMENTS / CURRICULUM --- */
+        .dept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .dept-card {
+            background: var(--bg-card);
+            padding: 40px 30px; border: 1px solid rgb(250, 235, 235);
+            transition: var(--transition); position: relative; overflow: hidden;
         }
+        .dept-card:hover { transform: translateY(-10px); border-color: var(--gold); }
+        .dept-icon { font-size: 40px; color: var(--gold); margin-bottom: 20px; }
+        .dept-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--white); }
+        .dept-card p { color: var(--text-gray); font-size: 15px; margin-bottom: 20px; }
+        .dept-list li { list-style: none; color: #ccc; font-size: 14px; margin-bottom: 8px; }
+        .dept-list i { color: var(--gold); margin-right: 8px; font-size: 12px; }
+
+        /* --- 7. FACILITIES (Why Choose Us) --- */
+        .facilities-section { background: #081414; }
+        .facility-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+        .facility-item { padding: 30px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+        .facility-item:hover { background: var(--bg-card); border-color: var(--gold); }
+        .facility-item i { font-size: 30px; color: var(--gold); margin-bottom: 15px; display: block; }
+        .facility-item h4 { font-size: 14px; color: #fff; letter-spacing: 1px; }
+
+        /* --- 8. ADVISORS --- */
+        .advisor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .advisor-card { text-align: center; background: var(--bg-card); padding: 30px; border-top: 3px solid var(--gold); }
+        .advisor-img { width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 20px; background: #222; display: flex; align-items: center; justify-content: center; border: 2px solid var(--gold); }
+        .advisor-img i { font-size: 40px; color: var(--text-gray); }
+        .advisor-card h3 { font-size: 18px; margin-bottom: 5px; }
+        .advisor-card p { font-size: 13px; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- 9. ADMISSION FORM --- */
+        .admission-section {
+            background: linear-gradient(rgba(5, 14, 14, 0.9), rgba(5, 14, 14, 0.9)), url('https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=1000&auto=format&fit=crop');
+            background-size: cover; background-attachment: fixed;
+        }
+        .form-wrapper {
+            max-width: 800px; margin: 0 auto;
+            background: rgba(10, 31, 31, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 50px; border: 1px solid rgba(197, 160, 89, 0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        .form-group label { display: block; color: var(--gold); font-size: 12px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+        .form-control {
+            width: 100%; padding: 12px; background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1); color: #fff;
+            font-family: var(--font-body); outline: none; transition: 0.3s;
+        }
+        .form-control:focus { border-color: var(--gold); background: rgba(0,0,0,0.5); }
+        select.form-control { color: #fff; }
+        select.form-control option { background: var(--bg-card); color: #fff; }
+        .full-width { grid-column: span 2; }
+
+        /* --- 10. FOOTER --- */
+        footer { background: #020808; padding: 60px 0 20px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; }
+        .footer h3 { color: var(--white); margin-bottom: 20px; font-size: 1.2rem; }
+        .footer p { color: #888; font-size: 14px; margin-bottom: 20px; }
+        .contact-list li { margin-bottom: 15px; color: #aaa; font-size: 14px; display: flex; gap: 10px; }
+        .contact-list i { color: var(--gold); margin-top: 4px; }
+        .copyright { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 13px; color: #666; }
 
         /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.2rem; }
-            .hero-btn-group { flex-direction: column; }
-            .about-section { grid-template-columns: 1fr; }
-            .nav-links { display: none; position: absolute; top: 80px; left: 0; width: 100%; background: var(--white); flex-direction: column; padding: 20px; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
-            .nav-links.active { display: flex; }
-            .mobile-toggle { display: block; }
+        @media(max-width: 992px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .facility-grid { grid-template-columns: 1fr 1fr; }
         }
-
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); } }
+        @media(max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: var(--bg-card); flex-direction: column; padding: 30px; text-align: center; border-bottom: 1px solid var(--gold); }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .form-row { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .hero-badges { display: none; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <i class="fas fa-mosque"></i> ISLAMIC EDUCARE
-                </div>
-                <div class="mobile-toggle" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#curriculum">Programs</a></li>
-                    <li><a href="#leadership">Leadership</a></li>
-                    <li><a href="#contact" class="btn btn-gold" style="margin-left: 10px; padding: 8px 20px;">Admission</a></li>
-                </ul>
-            </nav>
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-flex">
+            <a href="#" class="logo">
+                <i class="fas fa-moon"></i> ISLAMIC EDUCARE
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Philosophy</a></li>
+                <li><a href="#programs">Curriculum</a></li>
+                <li><a href="#branches">Branches</a></li>
+                <li><a href="#admission" class="text-gold">Admission</a></li>
+            </ul>
+            <div class="mobile-menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- Hero Section -->
+    <!-- HERO SECTION -->
     <section class="hero" id="home">
         <div class="container hero-content">
-            <h1>Where Modern Education <br> Meets Quranic Values</h1>
-            <p>Admissions Open: Play to Hifz. Nurturing Fitrah with Love.</p>
-            <div class="hero-btn-group">
-                <a href="#contact" class="btn btn-gold">Book Campus Visit</a>
-                <a href="https://www.youtube.com" target="_blank" class="btn btn-outline"><i class="fas fa-play"></i> Watch Documentary</a>
+            <div class="hero-badges">
+                <span class="badge">Gulshan</span>
+                <span class="badge">Banani</span>
+                <span class="badge">Cantonment</span>
+            </div>
+            <h1>School & Islamic Education <br> <span class="text-gold">A Bright Future</span></h1>
+            <p class="bn">স্কুল ও দ্বীনি শিক্ষার সমন্বয়ে, আলোকিত ভবিষ্যৎ গড়ার প্রত্যয়ে। আপনার সন্তানের জন্য আধুনিক ও নিরাপদ পরিবেশ।</p>
+            <div style="margin-top: 30px;">
+                <a href="#admission" class="btn btn-fill">Enroll Now - 2026</a>
+                <a href="#about" class="btn">View Facilities</a>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="container">
-        <div class="features-grid">
-            <div class="feature-card">
-                <i class="fas fa-globe-americas feature-icon"></i>
-                <h3>International Standard Hifz</h3>
-                <p>Global standard curriculum focusing on Tajweed and memorization excellence.</p>
+    <!-- FACILITY ICONS (Quick View) -->
+    <div class="facilities-section">
+        <div class="container facility-grid">
+            <div class="facility-item">
+                <i class="fas fa-video"></i>
+                <h4>CCTV Secured</h4>
             </div>
-            <div class="feature-card">
-                <i class="fas fa-chalkboard-teacher feature-icon"></i>
-                <h3>1:10 Teacher Ratio</h3>
-                <p>Individual care and attention for every child's spiritual and academic growth.</p>
+            <div class="facility-item">
+                <i class="fas fa-snowflake"></i>
+                <h4>AC Campus</h4>
             </div>
-            <div class="feature-card">
-                <i class="fas fa-shield-alt feature-icon"></i>
-                <h3>Safe & AC Campus</h3>
-                <p>Fully air-conditioned classrooms with 24/7 CCTV monitoring for safety.</p>
+            <div class="facility-item">
+                <i class="fas fa-child"></i>
+                <h4>Punishment Free</h4>
+            </div>
+            <div class="facility-item">
+                <i class="fas fa-book-reader"></i>
+                <h4>Intl. Standard Hifz</h4>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- About Section -->
+    <!-- ABOUT / PHILOSOPHY -->
     <section class="section-padding" id="about">
-        <div class="container about-section">
+        <div class="container about-grid">
             <div class="about-text">
-                <h2>Nurturing the Future of Ummah</h2>
-                <div class="divider" style="margin: 0 0 20px 0;"></div>
-                <p>At <strong>Islamic Educare Home</strong>, we believe that a pious child is the key to Jannah. Our unique approach combines modern academic needs with deep-rooted Islamic values.</p>
-                <br>
-                <ul style="list-style: none;">
-                    <li><i class="fas fa-check" style="color: var(--secondary-gold); margin-right: 10px;"></i> Punishment-free environment</li>
-                    <li><i class="fas fa-check" style="color: var(--secondary-gold); margin-right: 10px;"></i> Separate classrooms for boys & girls</li>
-                    <li><i class="fas fa-check" style="color: var(--secondary-gold); margin-right: 10px;"></i> Located in the heart of Gulshan</li>
+                <span class="sub-heading">WHO WE ARE</span>
+                <h2 class="section-title">Building Character, <br> Not Just Memory.</h2>
+                <div class="divider" style="margin-left: 0;"></div>
+                <div class="quote-box bn">
+                    "সন্তানকে বিশ্ব জয়ের যোগ্য করছেন ঠিকই, কিন্তু সে কি সৃষ্টিকর্তা আল্লাহর মতে চলার পাথেয়টুকু খুঁজে পেয়েছে?"
+                </div>
+                <p class="bn" style="color: #ccc;">
+                    আমরা বিশ্বাস করি, দ্বীন এবং দুনিয়া সাংঘর্ষিক নয়। আমাদের লক্ষ্য গতানুগতিক শিক্ষা নয়, বরং রাসূলুল্লাহ (সা.)-এর সুন্নাহ ও ভালোবাসার আদলে শিশুদের মনস্তত্ত্ব বুঝে তাদের গড়ে তোলা।
+                </p>
+                <ul class="dept-list" style="margin-top: 20px;">
+                    <li><i class="fas fa-check"></i> ৩ বছর মেয়াদী (৬ সেমিস্টার) কারিকুলাম</li>
+                    <li><i class="fas fa-check"></i> স্কুল-মক্তব ও আফটার স্কুল প্রোগ্রাম</li>
+                    <li><i class="fas fa-check"></i> অভিজ্ঞ আলেম ও হাফেজ দ্বারা পরিচালিত</li>
                 </ul>
-                <br>
-                <a href="#contact" class="btn" style="border-bottom: 2px solid var(--primary-green); color: var(--primary-green);">Learn More &rarr;</a>
             </div>
-            <div class="video-wrapper">
-                <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=2070&auto=format&fit=crop" alt="Classroom">
-                <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="about-img">
+                <img src="madrasa.jpg" alt="Classroom">
             </div>
         </div>
     </section>
 
-    <!-- Curriculum Section -->
-    <section class="section-padding curriculum" id="curriculum">
+    <!-- PROGRAMS / CURRICULUM -->
+    <section class="section-padding" id="programs" style="background: #081010;">
         <div class="container">
-            <div class="section-header">
-                <h2>Our Curriculum</h2>
+            <div class="section-title-wrapper">
+                <span class="sub-heading">ACADEMIC PROGRAMS</span>
+                <h2 class="section-title">Our Departments</h2>
                 <div class="divider"></div>
-                <p>A balanced syllabus designed for school-going children.</p>
-            </div>
-            <div class="curriculum-grid">
-                <div class="curriculum-item"><i class="fas fa-quran"></i> Nazira & Hifz (Madani Method)</div>
-                <div class="curriculum-item"><i class="fas fa-book-open"></i> Correct Recitation with Meaning</div>
-                <div class="curriculum-item"><i class="fas fa-pray"></i> Practical Salah Training</div>
-                <div class="curriculum-item"><i class="fas fa-hand-holding-heart"></i> Daily Masail & Etiquette</div>
-                <div class="curriculum-item"><i class="fas fa-history"></i> Seerah of Prophet (PBUH)</div>
-                <div class="curriculum-item"><i class="fas fa-language"></i> Arabic Language Support</div>
             </div>
 
-            <!-- Shifts -->
-            <div class="shifts-container">
-                <div class="shift-card">
-                    <i class="fas fa-sun"></i>
-                    <h3>Morning Shift</h3>
-                    <p>Best for evening schoolers</p>
-                </div>
-                <div class="shift-card" style="border-color: var(--secondary-gold); background: #fffdf5;">
-                    <i class="fas fa-baby-carriage"></i>
-                    <h3>Daycare Shift</h3>
-                    <p>Pre-play & Nursery Care</p>
-                </div>
-                <div class="shift-card">
-                    <i class="fas fa-moon"></i>
-                    <h3>Evening Shift</h3>
-                    <p>After-school program</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Leadership Section -->
-    <section class="section-padding leadership" id="leadership">
-        <div class="container">
-            <div class="section-header">
-                <h2>Guidance & Leadership</h2>
-                <div class="divider"></div>
-                <p>Supervised by renowned scholars of the country.</p>
-            </div>
-            <div class="leader-grid">
-                <div class="leader-card">
-                    <img src="https://via.placeholder.com/150" alt="Shaykh Abdul Haque">
-                    <h4>Shaykh Abdul Haque</h4>
-                    <p>Advisor / Chairman</p>
-                </div>
-                <div class="leader-card">
-                    <img src="https://via.placeholder.com/150" alt="Syed Zulfiqar Zahur">
-                    <h4>Syed Zulfiqar Zahur</h4>
-                    <p>Supervisor (Khatib, Baridhara)</p>
-                </div>
-                <div class="leader-card">
-                    <img src="https://via.placeholder.com/150" alt="Director">
-                    <h4>H.M. Abu Taher Saifullah</h4>
-                    <p>Director</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>Islamic Educare Home</h3>
-                    <p>A premier Deeni Maktab providing after-school programs for children and teenagers in Gulshan.</p>
-                </div>
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#curriculum">Admissions</a></li>
-                        <li><a href="#contact">Contact</a></li>
+            <div class="dept-grid">
+                <!-- Card 1 -->
+                <div class="dept-card">
+                    <i class="fas fa-quran dept-icon"></i>
+                    <h3>Hifzul Quran</h3>
+                    <p class="bn">আন্তর্জাতিক মানের হিফজ ও তাজবীদ শিক্ষা। নিয়মিত হিফজ প্রতিযোগিতার ব্যবস্থা।</p>
+                    <ul class="dept-list">
+                        <li><i class="fas fa-dot-circle"></i> Full Time Hifz</li>
+                        <li><i class="fas fa-dot-circle"></i> Daycare Hifz</li>
+                        <li><i class="fas fa-dot-circle"></i> Nazera Class</li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h3>Contact Info</h3>
-                    <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> House #5, Road #127, Block-E, Gulshan-1, Dhaka</li>
-                        <li><i class="fas fa-phone"></i> 01753 750 903</li>
+
+                <!-- Card 2 -->
+                <div class="dept-card">
+                    <i class="fas fa-mosque dept-icon"></i>
+                    <h3>Deeni Maktab</h3>
+                    <p class="bn">৩-৫ বছরের শিশুদের খেলার ছলে সহজ মাখরাজ ও ছোট সূরা শিক্ষা (মাদানী মক্তব)।</p>
+                    <ul class="dept-list">
+                        <li><i class="fas fa-dot-circle"></i> Pre-Play Group</li>
+                        <li><i class="fas fa-dot-circle"></i> No Heavy Books</li>
+                        <li><i class="fas fa-dot-circle"></i> Fun Learning</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="dept-card">
+                    <i class="fas fa-school dept-icon"></i>
+                    <h3>School Maktab</h3>
+                    <p class="bn">স্কুল পড়ুয়াদের জন্য বিশেষ ইভনিং ব্যাচ, যাতে স্কুলের পড়াশোনার ক্ষতি না হয়।</p>
+                    <ul class="dept-list">
+                        <li><i class="fas fa-dot-circle"></i> Evening Shift</li>
+                        <li><i class="fas fa-dot-circle"></i> Homework Support</li>
+                        <li><i class="fas fa-dot-circle"></i> Moral Education</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADVISORS -->
+    <section class="section-padding" id="leadership">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <span class="sub-heading">LEADERSHIP</span>
+                <h2 class="section-title">Advisory Board</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="advisor-grid">
+                <div class="advisor-card">
+                    <div class="advisor-img"><i class="fas fa-user-graduate"></i></div>
+                    <h3>Shaykh Abdul Haque</h3>
+                    <p>Chairman, Huffazul Quran Foundation</p>
+                </div>
+                <div class="advisor-card">
+                    <div class="advisor-img"><i class="fas fa-user-tie"></i></div>
+                    <h3>Hafiz M. Abdur Rahim</h3>
+                    <p>Khatib, Gulshan Central Mosque</p>
+                </div>
+                <div class="advisor-card">
+                    <div class="advisor-img"><i class="fas fa-user"></i></div>
+                    <h3>Syed Zulfiqar Zahur</h3>
+                    <p>Supervisor</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADMISSION FORM -->
+    <section class="section-padding admission-section" id="admission">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <span class="sub-heading" style="color: #fff;">JOIN US</span>
+                <h2 class="section-title">Online Admission Form</h2>
+                <p class="bn" style="color: #ccc;">শিক্ষাবর্ষ ২০২৬ এর জন্য ভর্তি চলছে</p>
+            </div>
+
+            <div class="form-wrapper">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Student Name (নাম)</label>
+                            <input type="text" class="form-control" placeholder="Full Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Age (বয়স)</label>
+                            <input type="number" class="form-control" placeholder="Years">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Guardian Name (অভিভাবক)</label>
+                            <input type="text" class="form-control" placeholder="Father/Mother Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number (মোবাইল)</label>
+                            <input type="tel" class="form-control" placeholder="017XX-XXXXXX">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Preferred Branch (শাখা)</label>
+                            <select class="form-control">
+                                <option>Gulshan Branch</option>
+                                <option>Banani Branch</option>
+                                <option>Cantonment Branch</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Program (বিভাগ)</label>
+                            <select class="form-control">
+                                <option>Maktab (Morning)</option>
+                                <option>Hifzul Quran</option>
+                                <option>School Maktab (Evening)</option>
+                                <option>Adult Education</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Message (বার্তা)</label>
+                        <textarea class="form-control full-width" rows="3" placeholder="Any queries?"></textarea>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button type="submit" class="btn btn-fill" style="width: 100%;">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#" class="logo" style="margin-bottom: 20px;">
+                        <i class="fas fa-moon"></i> ISLAMIC EDUCARE
+                    </a>
+                    <p class="bn">আধুনিক শিক্ষা ও দ্বীনি নৈতিকতার শ্রেষ্ঠ মেলবন্ধন। আমরা শুধু মুখস্ত করাই না, চরিত্র গঠন করি।</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--gold); font-size: 16px;">Important Links</h3>
+                    <ul class="nav-links" style="display: block;">
+                        <li style="margin-bottom: 10px;"><a href="#about">About Us</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#programs">Curriculum</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#admission">Admission Info</a></li>
+                    </ul>
+                </div>
+                <div id="branches">
+                    <h3 style="color: var(--gold); font-size: 16px;">Contact Us</h3>
+                    <ul class="contact-list">
+                        <li><i class="fas fa-map-marker-alt"></i> House #5, Road #127, Gulshan-1</li>
+                        <li><i class="fas fa-phone"></i> 01753 750 903 | 01744 327 134</li>
                         <li><i class="fas fa-envelope"></i> info@islamiceducare.com</li>
+                        <li><i class="fas fa-clock"></i> 3:00 PM - 9:00 PM</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2030 Islamic Educare Home. All Rights Reserved.</p>
+                &copy; 2026 Islamic Educare Home. All Rights Reserved.
             </div>
         </div>
     </footer>
 
-    <!-- WhatsApp Button -->
-    <a href="https://wa.me/8801815036007" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- Simple Script for Mobile Menu -->
+    <!-- JavaScript for Mobile Menu & Sticky Nav -->
     <script>
+        // Sticky Navbar Effect
+        window.addEventListener('scroll', function() {
+            var navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
         function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
+            var navLinks = document.getElementById('navLinks');
+            if (navLinks.style.display === "flex") {
+                navLinks.style.display = "none";
+            } else {
+                navLinks.style.display = "flex";
+                navLinks.style.flexDirection = "column";
+                navLinks.style.position = "absolute";
+                navLinks.style.top = "70px";
+                navLinks.style.left = "0";
+                navLinks.style.width = "100%";
+                navLinks.style.background = "#0A1F1F";
+                navLinks.style.padding = "20px";
+                navLinks.style.textAlign = "center";
+            }
         }
     </script>
+
 </body>
-
 </html>
-
